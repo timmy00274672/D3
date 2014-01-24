@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>D3 group-axes</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+    <script>
+    var dataArray = [0, 10, 20, 30, 40, 50, 60, 70];
+    var width = 500;
+    var height = 500;
+
+    var widthScale = d3.scale.linear()
+        .domain([0, 70])
+        .range([0, width]);
+
+    var colorScale = d3.scale.linear()
+        .domain([0, 35, 70])
+        .range(["red", "white", "green"]);
+
+    var axis = d3.svg.axis()
+        .ticks(5)
+        .scale(widthScale);
+
+    var canvas = d3.select("body")
+        .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate(20,20)");
+
+    var bars = canvas.selectAll("rect")
+        .data(dataArray)
+        .enter()
+        .append("rect")
+        .attr("width", function(d) {
+            return widthScale(d);
+        })
+        .attr("height", function(d) {
+            return 15;
+        })
+        .attr("fill", function(d) {
+            return colorScale(d)
+        })
+        .attr("y", function(d, i) {
+            return i * 15;
+        });
+
+    canvas.append("g")
+        .attr("transform", "translate(0,150)")
+        .call(axis);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>D3 visualizing-data </title>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	
+</head>
+
+<body>
+ 
+	<script>
+	
+		var canvas = d3.select("body")
+					.append("svg")
+					.attr("width",500)
+					.attr("height",500);
+
+		var circle = canvas.append("circle")
+					.attr("cx",50)
+					.attr("cy",50)
+					.attr("r",25);
+
+		circle.transition()
+			.duration(1500)
+			.delay(1000)
+			.attr("cx",150)
+			.attr("cy",170)
+			.attr("fill","pink")
+			.attr("r",50)
+			.transition()
+			.duration(1500)
+			.attr("cx",50)
+			.attr("cy",50)
+			.attr("r",25)
+			.each("end",function(){
+				d3.select(this).attr("fill","blue")
+			});
+
+		
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>enter-update-exit</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+    <script>
+        
+		var data = [10,20];
+
+        // It show DOM elements < data elements (1<2). Observe the color.
+
+        /*
+        var canvas = d3.select("body")
+                    .append("svg")
+                    .attr("width", 500)
+                    .attr("height",500);
+                    
+        var circle = canvas.append("circle")
+                    .attr("cx",50)
+                    .attr("cy",100)
+                    .attr("r",25);
+
+        var circles = canvas.selectAll("circle")
+                    .data(data)
+                    .attr("fill","green")
+                    .enter()
+                        .append("circle")
+                        .attr("cx",50)
+                        .attr("cy",50)
+                        .attr("r", 25)
+                        .attr("fill","red");*/
+
+
+        //DOM elements =  data elements
+        /*
+        data = [10];
+        var canvas = d3.select("body")
+                    .append("svg")
+                    .attr("width", 500)
+                    .attr("height",500);
+                    
+        var circle = canvas.append("circle")
+                    .attr("cx",50)
+                    .attr("cy",100)
+                    .attr("r",25);
+
+        var circles = canvas.selectAll("circle")
+                    .data(data)
+                    .attr("fill","green")
+                    .enter()
+                        .append("circle")   // will add 0 circle
+                        .attr("cx",50)
+                        .attr("cy",50)
+                        .attr("r", 25)
+                        .attr("fill","red");*/
+        
+
+
+		
+        //DOM elements >  data elements
+        data = [10];
+        var canvas = d3.select("body")
+                    .append("svg")
+                    .attr("width", 500)
+                    .attr("height",500);
+                    
+        var circle = canvas.append("circle")
+                    .attr("cx",50)
+                    .attr("cy",100)
+                    .attr("r",25);
+
+        var circle2 = canvas.append("circle")
+                    .attr("cx",50)
+                    .attr("cy",150)
+                    .attr("r",25);
+
+        var circles = canvas.selectAll("circle")
+                    .data(data)
+                    .attr("fill","green")
+                    .exit()
+                        .attr("fill","yellow")
+                        ;
+        
+
+    </script>
+
+
+</body>
+
+</html>
