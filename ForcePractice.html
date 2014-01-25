@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>temp</title>
+    <script src="d3.v3.min.js" charset="utf-8"></script>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+
+	<script type="text/javascript">
+
+	var height = 800, width = 800;
+
+		var fill = d3.scale.category10();
+		var force = d3.layout.force()
+			.size([0.9*width,0.9*height])
+			.on("tick",function(){
+				node
+					.attr("cx",function(d){return d.x;})
+					.attr("cy",function(d){return d.y;})
+			});
+
+		var aNode = {"type":0,"name":"CO2"},
+			bNode = {"type":1,"name":"MyProject"},
+			cNode = {"type":2,"name":"Wang"};
+
+		var abLink = {"source":0,"target":1,"value":10},
+			acLink = {"source":0,"target":2,"value":11},
+			cbLink = {"source":1,"target":2,"value":12};
+
+		force.nodes().push(aNode,bNode,cNode);
+		force.links().push(abLink,acLink,cbLink);
+		force.start();	
+
+
+	    var svg = d3.select("body").append("svg")
+        	.attr("width", width)
+        	.attr("height", height);
+
+		var node = svg.selectAll(".node")
+			.data(force.nodes())
+			.enter()
+				.append("circle")
+				.attr("class","node")
+				.attr("r",10)
+				.attr("cx",function(d){return d.x;})
+				.attr("cy",function(d){return d.y;})
+				.attr("fill",function(d){return fill(d.type);})
+				// .call(force.drag);
+
+
+	</script>
+
+</body>
+
+</html>
